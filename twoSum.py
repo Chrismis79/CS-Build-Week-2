@@ -83,16 +83,17 @@ class Solution:
 #                     index.append(f_index)
 #                     index.append(f_index + s_index + 1)
 #                     return index
+#
+# class Solution(object):
 
-class Solution(object):
-    def twoSum(self, nums, target):
-        cache = {}
-        for i in range(len(nums)):
-            complement = target - nums[i]
-            print('nums[i]', nums[i])
-            print('complement', complement)
-            if complement not in cache:
-                # add to dictionary
-                cache[nums[i]] = i
-            else:
-                return [cache[complement], i]
+def twoSum(self, nums, target):
+    cache = {}
+    for i in range(len(nums)):
+        complement = target - nums[i]
+        print('nums[i]', nums[i])
+        print('complement', complement)
+        if complement not in cache:
+            # add to dictionary
+            cache[nums[i]] = i
+        else:
+            return [cache[complement], i]
