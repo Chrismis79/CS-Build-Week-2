@@ -67,5 +67,5 @@ def first_not_repeating_character(s):
     return '_'
 
 
-# Runtime O(n2)
-# Improvements: I think I could make the space complexity better by not creating a new list, but tracking the current value and returning the first duplicate character. Then I wouldn't need the second for loop.
+# Runtime O(n)
+# Improvements: Could have reduced memory consumption by not using the empty list, and tracking the current value and returning the first duplicate character. Then I wouldn't need the second for loop.

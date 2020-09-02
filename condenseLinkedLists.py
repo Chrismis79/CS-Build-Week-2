@@ -27,11 +27,11 @@ def condense_linked_list(node):
     # node = ListNode class, if empty, return none
     if node is None:
         return None
-    # Make copy of node and set variable to curr
+    # Make pointer to the node and set variable to curr
     curr = node
     # while curr(node) is not empty
     while curr is not None:
-        # make copy of curr
+        # make pointer to curr
         inner = curr
         # while there is a node next to the current node:
         while inner.next is not None:
@@ -47,7 +47,7 @@ def condense_linked_list(node):
         curr = curr.next
     # return the new condensed list with duplicates removed.
     return node
- # Runtime O(n2)
+ # Runtime O(n)
  # Space 0(n)
 
- # Improvements: Not sure that I needed to make 2 copies of the list. Could have just tracked the current node, then looped through checking if the current node is the same as the visited node.
+ # Improvements: Could have just tracked the current node, then looped through checking if the current node is the same as the visited node.

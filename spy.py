@@ -1,12 +1,13 @@
 # In a city-state of n people, there is a rumor going around that one of the n people is a spy for the neighboring city-state.
 
 # The spy, if it exists:
-
 # Does not trust anyone else.
 # Is trusted by everyone else (he's good at his job).
 # Works alone
 # there are no other spies in the city-state.
 # You are given a list of pairs, trust. Each trust[i] = [a, b] represents the fact that person a trusts person b.
+
+# BASICALLY LOOKING FOR THE PERSON THE DOESN'T TRUST ANYONE AND EVERYONE TRUSTS THEM.
 
 # If the spy exists and can be found, return their identifier. Otherwise, return -1.
 
@@ -36,6 +37,7 @@
 # Output: 3
 # Explanation: Person 1 trusts Person 3 and Person 4, Person 2 trusts Person 3 and Person 4, Person 4 trusts Person 3. Everyone trusts Person 3 but Person 3 does not trust anyone, so they are the spy.
 
+
 # PLANNING:
 # Spies are identified with three different criteria.
 # They do not trust anyone
@@ -62,41 +64,42 @@
 # 12: 49
 # And of course if you dont find anyone who fills that criteria, you can't determine a spy and you return -1.
 
-n = 3
-trust = [[1, 3], [2, 3], [3, 1]]
+n = 4
+trust = [[1, 3], [1, 4], [2, 3], [2, 4], [4, 3]]
 
 
 def uncover_spy(n, trust):
-    # Setting up our container dicts
+    #
     trusts_dict = {}
     is_trusted_dict = {}
-    # Comparison lists for potential spies.
-    trusts_no_one = []
-    is_trusted_by_n_minus_one = []
+
+    # loop over trust
     for pair in trust:
-        # Assigns person x trusts person y to trusts_dict.
+        # if each pair not in trusts_dict:
         if pair[0] not in trusts_dict:
+            # Assign person x trusts person y to trusts_dict.
             trusts_dict[pair[0]] = [pair[1]]
+            print('0', trusts_dict[pair[0]])
         else:
             trusts_dict[pair[0]].append(pair[1])
+            print('trusts', trusts_dict)
+
         # Assigns person y is trusted by person x to is_trusted_dict
         if pair[1] not in is_trusted_dict:
             is_trusted_dict[pair[1]] = [pair[0]]
         else:
+            print(is_trusted_dict[pair[1]])
             is_trusted_dict[pair[1]].append(pair[0])
+            print('is', is_trusted_dict)
+
     for key, value in is_trusted_dict.items():
-        if key not in trusts_dict:
-            # person trusts no one.
-            trusts_no_one.append(key)
-        if len(value) == n-1:
-            # person is trusted by everyone
-            is_trusted_by_n_minus_one.append(key)
-    intersection = [
-        value for value in trusts_no_one if value in is_trusted_by_n_minus_one]
-    if len(intersection) == 1:
-        return intersection[0]
-    else:
-        return -1
+        if key not in trusts_dict and len(value) == n-1:
+            return key
+    # not found
+
+    return -1
 
 
 print(uncover_spy(n, trust))
+# runtime O(n)
+# Improvements:
