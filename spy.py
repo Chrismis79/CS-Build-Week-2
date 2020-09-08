@@ -69,7 +69,7 @@ trust = [[1, 3], [1, 4], [2, 3], [2, 4], [4, 3]]
 
 
 def uncover_spy(n, trust):
-    #
+    # Create 2 dictionaries with opposite key/value pairs
     trusts_dict = {}
     is_trusted_dict = {}
 
@@ -77,29 +77,28 @@ def uncover_spy(n, trust):
     for pair in trust:
         # if each pair not in trusts_dict:
         if pair[0] not in trusts_dict:
-            # Assign person x trusts person y to trusts_dict.
+            # Assign person a trusts person b to trusts_dict.
             trusts_dict[pair[0]] = [pair[1]]
-            print('0', trusts_dict[pair[0]])
+
         else:
             trusts_dict[pair[0]].append(pair[1])
             print('trusts', trusts_dict)
 
-        # Assigns person y is trusted by person x to is_trusted_dict
+        # Assigns person b is trusted by person a to is_trusted_dict
         if pair[1] not in is_trusted_dict:
             is_trusted_dict[pair[1]] = [pair[0]]
         else:
-            print(is_trusted_dict[pair[1]])
             is_trusted_dict[pair[1]].append(pair[0])
             print('is', is_trusted_dict)
-
+    # loop over the key value pairs if the key is not in trusts_dict & the length of value is n-1, spy found, return the key
     for key, value in is_trusted_dict.items():
         if key not in trusts_dict and len(value) == n-1:
             return key
     # not found
-
     return -1
 
 
 print(uncover_spy(n, trust))
 # runtime O(n)
+# Space O(n)
 # Improvements:

@@ -68,4 +68,5 @@ def first_not_repeating_character(s):
 
 
 # Runtime O(n)
+# Space O(n)
 # Improvements: Could have reduced memory consumption by not using the empty list, and tracking the current value and returning the first duplicate character. Then I wouldn't need the second for loop.
